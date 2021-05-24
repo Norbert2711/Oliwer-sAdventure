@@ -1,0 +1,12 @@
+ exitButton.setOnMouseEntered(event -> {
+            Label label = new Label("Najechane");
+            label.setLayoutX(505);
+            label.setLayoutY(600);
+            label.prefHeight(80);
+            label.prefWidth(80);
+            exitButton.setOnMouseExited(event1 -> {
+                label.setText("");
+            });
+            mainPane.getChildren().add(label);
+
+        }
