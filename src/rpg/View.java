@@ -41,7 +41,7 @@ public class View {
 
     }
 
-    public void music(){
+    public void music() {
         String musicPath = new File("C:\\Users\\norbe\\Desktop\\RPGtest\\src\\rpg\\music\\music.mp3").toURI().toString();
         backgroundMusic = new MediaPlayer(new Media(musicPath));
         backgroundMusic.play();
@@ -108,11 +108,11 @@ public class View {
         startButton.setLayoutY(430);
         mainPane.getChildren().add(startButton);
 
-        startButton.setOnAction(actionEvent ->{
-                IntroScene intro = new IntroScene();
-                intro.createIntroAfterClickRozpocznij(intro);
-                mainStage.hide();
-                backgroundMusic.stop();
+        startButton.setOnAction(actionEvent -> {
+            IntroScene intro = new IntroScene();
+            intro.createIntroAfterClickRozpocznij(intro);
+            mainStage.hide();
+            backgroundMusic.stop();
         });
     }
 
@@ -124,6 +124,7 @@ public class View {
 
         scene.moveSubscene();
         sceneToHide = scene;
+
     }
 
     private void createSubscens() {
@@ -139,12 +140,12 @@ public class View {
         helpScene = new GameScenes();
         mainPane.getChildren().add(helpScene);
         Text helpText = new Text(
-                "Witaj podróżniku!"+"\n"+
-                "Przeżyj niesamowitą przygode wraz z Oliwerem." + "\n"+
-                "Walcz z potworami, zdobwaj doświadczenie, "+"\n"+
-                 "odkrywaj nowe lokacje." + "\n"+
-                "Do gry używaj LEWEGO przycisku myszy."+"\n"+
-                "Powodzenia!");
+                "Witaj podróżniku!" + "\n" +
+                        "Przeżyj niesamowitą przygode wraz z Oliwerem." + "\n" +
+                        "Walcz z potworami, zdobwaj doświadczenie, " + "\n" +
+                        "odkrywaj nowe lokacje." + "\n" +
+                        "Do gry używaj LEWEGO przycisku myszy." + "\n" +
+                        "Powodzenia!");
 
         helpScene.getPane().getChildren().add(helpText);
         helpText.setFont(Font.font("Comic Sans MS", 45));
@@ -157,7 +158,7 @@ public class View {
         back.setLayoutX(430);
         back.setLayoutY(530);
         helpScene.getPane().getChildren().add(back);
-        back.setOnAction(event -> helpScene.getPane().relocate(2000,2000));
+        back.setOnAction(event -> helpScene.getPane().relocate(2000, 2000));
 
     }
 
