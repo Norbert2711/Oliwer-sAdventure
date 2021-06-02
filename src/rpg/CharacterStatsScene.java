@@ -1,5 +1,6 @@
 package rpg;
 
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +28,7 @@ public class CharacterStatsScene extends Stage {
         addExitButton();
         createBackground();
         addCharGif();
+        addCursorLook();
     }
 
     public void openCharacterStats(Stage eqStage) {
@@ -47,11 +49,17 @@ public class CharacterStatsScene extends Stage {
                 BackgroundPosition.DEFAULT, null);
         exit.setBackground(new Background(backgroundImageButton));
 
-        exit.setLayoutY(555);
-        exit.setLayoutX(287);
+        exit.setLayoutY(552);
+        exit.setLayoutX(302);
         exit.setOnMouseClicked(event -> clickMusic());
         charPane.getChildren().add(exit);
         exit.setOnAction(event -> gameStage.close());
+
+    }
+    private void addCursorLook() {
+        String CURSOR_EFFECT = "rpg/graph/cursor.png";
+        Image cursor = new Image(CURSOR_EFFECT);
+        charPane.setCursor(new ImageCursor(cursor));
 
     }
 

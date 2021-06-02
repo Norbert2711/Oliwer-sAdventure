@@ -4,7 +4,6 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.SepiaTone;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,30 +19,28 @@ import rpg.test.EqScene;
 
 import java.io.File;
 
-public class StartLocation extends Stage {
+public class FieldsLocation extends Stage {
 
-    private AnchorPane locationPane;
+    private AnchorPane fieldsPane;
     private Stage gameStage;
     private Stage mainStage;
     public Stage menuStage;
     MediaPlayer backgroundMusic;
     private EqScene show;
 
-    public StartLocation() {
+    public FieldsLocation() {
 
-        locationPane = new AnchorPane();
-        Scene gameScene = new Scene(locationPane, 1152, 864);
+        fieldsPane = new AnchorPane();
+        Scene gameScene = new Scene(fieldsPane, 1152, 864);
         gameStage = new Stage();
         gameStage.setScene(gameScene);
         gameStage.getScene();
         addGraphStartLocation();
         addCursorLook();
         music();
-        addDescriptiveButtonsOnPane();
         eqButton();
         addCharacterButton();
-        addBee();
-        addNextLocationButton();
+        // addNextLocationButton();
 
 
     }
@@ -51,20 +48,20 @@ public class StartLocation extends Stage {
     private void addCursorLook() {
         String CURSOR_EFFECT = "rpg/graph/cursor.png";
         Image cursor = new Image(CURSOR_EFFECT);
-        locationPane.setCursor(new ImageCursor(cursor));
+        fieldsPane.setCursor(new ImageCursor(cursor));
 
     }
 
     private void addGraphStartLocation() {
 
-        Image image = new Image("rpg/graph/locations/startmap.png", 1152, 864, false, true);
+        Image image = new Image("rpg/graph/locations/fields.png", 1152, 864, false, true);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
-        locationPane.setBackground(new Background(backgroundImage));
+        fieldsPane.setBackground(new Background(backgroundImage));
 
     }
 
-    public void createAfterSkipIntro(Stage menuStage) {
+    public void createAfterChangeLocation(Stage menuStage) {
         this.menuStage = menuStage;
         this.menuStage.hide();
         this.gameStage.show();
@@ -76,73 +73,6 @@ public class StartLocation extends Stage {
         backgroundMusic.play();
     }
 
-    private void addDescriptiveButtonsOnPane() {
-//im mniejszy y tym wyzej na planszy
-// im wiekszy x tym bardziej w prawo
-
-        //well button
-        StartLocationButtons well = new StartLocationButtons();
-        well.setLayoutX(560);
-        well.setLayoutY(150);
-
-        well.setOnMouseEntered(event -> {
-            Label textWell = new Label("wyschnięta" + "\n" +
-                    "studnia");
-            textWell.setLayoutX(495);
-            textWell.setLayoutY(110);
-            textWell.prefHeight(80);
-            textWell.prefWidth(80);
-            textWell.setTextFill(Color.YELLOW);
-            textWell.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 20));
-            well.setOnMouseExited(event1 -> {
-                textWell.setText("");
-            });
-            locationPane.getChildren().add(textWell);
-        });
-        locationPane.getChildren().add(well);
-
-        //Oliwer's house
-        StartLocationButtons oliwersHouse = new StartLocationButtons();
-        oliwersHouse.setLayoutX(250);
-        oliwersHouse.setLayoutY(440);
-
-        oliwersHouse.setOnMouseEntered(event -> {
-            Label oliwersHouseText = new Label("Dom Oliwera");
-            oliwersHouseText.setLayoutX(250);
-            oliwersHouseText.setLayoutY(330);
-            oliwersHouseText.prefHeight(80);
-            oliwersHouseText.prefWidth(80);
-            oliwersHouseText.setTextFill(Color.YELLOW);
-            oliwersHouseText.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 20));
-            oliwersHouse.setOnMouseExited(event1 -> {
-                oliwersHouseText.setText("");
-            });
-            locationPane.getChildren().add(oliwersHouseText);
-        });
-        locationPane.getChildren().add(oliwersHouse);
-
-        //Anna's house
-        StartLocationButtons annasHouse = new StartLocationButtons();
-        annasHouse.setLayoutX(800);
-        annasHouse.setLayoutY(440);
-
-        annasHouse.setOnMouseEntered(event -> {
-            Label annassHouseText = new Label("Dom Anny");
-            annassHouseText.setLayoutX(800);
-            annassHouseText.setLayoutY(330);
-            annassHouseText.prefHeight(80);
-            annassHouseText.prefWidth(80);
-            annassHouseText.setTextFill(Color.YELLOW);
-            annassHouseText.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 20));
-            annasHouse.setOnMouseExited(event1 -> {
-                annassHouseText.setText("");
-            });
-            locationPane.getChildren().add(annassHouseText);
-        });
-        locationPane.getChildren().add(annasHouse);
-
-
-    }
 
     private void eqButton() {
 
@@ -178,10 +108,10 @@ public class StartLocation extends Stage {
             eq.setOnMouseExited(event1 -> {
                 eqText.setText("");
             });
-            locationPane.getChildren().add(eqText);
+            fieldsPane.getChildren().add(eqText);
         });
 
-        locationPane.getChildren().add(eq);
+        fieldsPane.getChildren().add(eq);
 
     }
 
@@ -205,7 +135,7 @@ public class StartLocation extends Stage {
         });
 
         characterButton.setOnMousePressed(event -> characterButton.setGraphic(new ImageView("rpg/graph/items/pressedCharOnBar.png")));
-        characterButton.setOnMouseReleased(event ->  characterButton.setGraphic(new ImageView(charButtonImage)));
+        characterButton.setOnMouseReleased(event -> characterButton.setGraphic(new ImageView(charButtonImage)));
         characterButton.setOnMouseClicked(event -> clickMusic());
         characterButton.setOnMouseEntered(event -> {
             Label charText = new Label("Postać");
@@ -219,14 +149,15 @@ public class StartLocation extends Stage {
                 charText.setText("");
             });
 
-            locationPane.getChildren().add(charText);
+            fieldsPane.getChildren().add(charText);
         });
 
-        locationPane.getChildren().add(characterButton);
+        fieldsPane.getChildren().add(characterButton);
 
 
     }
-    public void clickMusic(){
+
+    public void clickMusic() {
 
         MediaPlayer backgroundMusic;
 
@@ -240,11 +171,11 @@ public class StartLocation extends Stage {
         ImageView bee = new ImageView("rpg/graph/monsters/bee.gif");
         bee.setLayoutY(120);
         bee.setLayoutX(215);
-        locationPane.getChildren().add(bee);
+        fieldsPane.getChildren().add(bee);
 
     }
 
-    private void addNextLocationButton(){
+    private void addNextLocationButton() {
 
         Button nextLocationButton = new Button();
 
@@ -257,34 +188,13 @@ public class StartLocation extends Stage {
                 BackgroundPosition.DEFAULT, null);
         nextLocationButton.setBackground(new Background(backgroundImageButton));
 
-        nextLocationButton.setLayoutX(525);
-        nextLocationButton.setLayoutY(765);
+        nextLocationButton.setLayoutX(450);
+        nextLocationButton.setLayoutY(750);
         nextLocationButton.setOnMouseEntered(mouseEvent -> nextLocationButton.setEffect(new SepiaTone()));
         nextLocationButton.setOnMouseExited(mouseEvent -> nextLocationButton.setEffect(null));
-        nextLocationButton.setOnAction(event -> {
-            FieldsLocation fieldsLocation = new FieldsLocation();
-            fieldsLocation.createAfterChangeLocation(fieldsLocation);
-            backgroundMusic.stop();
-            gameStage.close();
-        });
-
-        nextLocationButton.setOnMouseEntered(event -> {
-            Label nextLocationText = new Label("Przejdź dalej");
-            nextLocationText.setLayoutX(525);
-            nextLocationText.setLayoutY(750);
-            nextLocationText.prefHeight(100);
-            nextLocationText.prefWidth(100);
-            nextLocationText.setTextFill(Color.YELLOW);
-            nextLocationText.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 20));
-            nextLocationButton.setOnMouseExited(event1 -> {
-                nextLocationText.setText("");
-            });
-
-            locationPane.getChildren().add(nextLocationText);
-        });
 
 
-        locationPane.getChildren().add(nextLocationButton);
+        fieldsPane.getChildren().add(nextLocationButton);
 
     }
 

@@ -1,5 +1,6 @@
 package rpg.test;
 
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,7 +19,6 @@ public class EqScene extends Stage {
     public Stage menuStage;
     public AnchorPane eqPane;
 
-
     public EqScene() {
          eqPane = new AnchorPane();
         Scene gameScene = new Scene(eqPane, 300, 500);
@@ -27,12 +27,21 @@ public class EqScene extends Stage {
         gameStage.getScene();
         addExitButton();
         createBackground();
+        addCursorLook();
+
     }
 
     public void openEq(Stage eqStage) {
 
         this.menuStage = eqStage;
         this.gameStage.show();
+
+    }
+
+    private void addCursorLook() {
+        String CURSOR_EFFECT = "rpg/graph/cursor.png";
+        Image cursor = new Image(CURSOR_EFFECT);
+        eqPane.setCursor(new ImageCursor(cursor));
 
     }
 
